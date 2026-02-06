@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Boda</title>
+
+<!-- FUENTES -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&family=Playfair+Display&family=Devil+Candle&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* CONTENEDOR GENERAL */
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f7efe3, #e6d3b3);
+  overflow: hidden;
+}
+
+/* IMAGEN */
+.portada-container {
+  height: 70vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portada {
+  max-height: 100vh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+}
+
+/* ⭐ BOTÓN BAJADO UN POCO MÁS (75%) */
+.sobre-link {
+  position: absolute;
+  left: 50%;
+  top: 75%;   /* 🔥 BAJADO UN POCO MÁS */
+  transform: translate(-50%, -50%);
+
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+
+  background: #D39AA3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sobre-link:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+}
+
+.sobre-link span {
+  font-family: 'Devil Candle';
+  font-size: 1.2rem !important;
+  color: #F7E7CE;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.45);
+}
+
+/* ⭐ SEPARADOR DORADO */
+.separador-dorado {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.separador-dorado::before,
+.separador-dorado::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: #C78992;
+  border-radius: 2px;
+}
+
+.separador-dorado span {
+  color: #C78992  ;
+  font-size: 2rem;
+  margin: 0 20px;
+}
+
+/* TEXTO ABAJO */
+.texto-abajo {
+  height: 30vh;
+  background:#F7E7CE;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 20px 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #5C3E2E;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* RECUADRO DERECHO */
+.recuadro {
+  flex: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+}
+
+/* CONTADOR */
+#contador {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #5C3E2E;
+  background: rgba(255,255,255,0.65);
+  padding: 16px 30px;
+  border-radius: 24px;
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,0.15),
+    0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 50;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #D9C5A8;
+  border-top: 6px solid #A8754F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #8B5E3C;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .sobre-link {
+    left: 50%;
+    top: 75%; /* 🔥 MISMA ALTURA EN MÓVIL */
+    transform: translate(-50%, -50%);
+  }
+
+  .recuadro {
+    height: auto;
+    padding: 40px 0;
+  }
+
+  #contador {
+    font-size: 1.4rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="portada-container">
+    <img src="imagenes/res22.png" class="portada" alt="Invitación">
+
+    <div class="sobre-link" id="sobre">
+      <span>Abrir</span>
+    </div>
+  </div>
+
+  <div class="texto-abajo">
+
+    <!-- ⭐ SEPARADOR DORADO -->
+    <div class="separador-dorado">
+      <span>✦</span>
+    </div>
+
+    <p>
+      Con mucha ilusión queremos invitarte a compartir con nosotros
+      uno de los días más importantes de nuestra vida.
+    </p>
+  </div>
+
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="loader"></div>
+  <div class="loading-text">Cargando...</div>
+</div>
+
+<script>
+const sobre = document.getElementById('sobre');
+const overlay = document.getElementById('overlay');
+
+const contador = document.getElementById("contador");
+const fechaBoda = new Date("2026-06-20T18:00:00").getTime();
+
+setInterval(() => {
+  const ahora = new Date().getTime();
+  const distancia = fechaBoda - ahora;
+
+  if (distancia <= 0) {
+    contador.innerHTML = "¡Hoy es el gran día! 💍";
+    return;
+  }
+
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+
+  contador.innerHTML = `${dias} días · ${horas}h · ${minutos}m`;
+}, 1000);
+
+sobre.addEventListener('click', () => {
+  overlay.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'musica.html';
+  }, 700);
+});
+</script>
+<audio id="musica" autoplay loop muted>
+  <source src="musica/boda.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById('musica');
+  audio.volume = 0.4;
+
+  const activarSonido = () => {
+    audio.muted = false;
+    audio.play();
+    document.removeEventListener('click', activarSonido);
+    document.removeEventListener('touchstart', activarSonido);
+  };
+
+  document.addEventListener('click', activarSonido);
+  document.addEventListener('touchstart', activarSonido);
+</script>
+
+</body>
+</html>

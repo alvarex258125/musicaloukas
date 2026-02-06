@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fondo Completo</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Imagen de fondo que ocupa toda la pantalla */
+  .fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* llena sin deformar */
+    z-index: -1; /* detrás del contenido */
+  }
+
+  /* Contenido centrado */
+  .contenido {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  }
+</style>
+</head>
+<body>
+
+<!-- Imagen de fondo -->
+<img src="imagenes/musica.png" alt="Fondo" class="fondo">
+
+
+
+</body>
+</html>
